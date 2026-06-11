@@ -52,6 +52,6 @@ endif()
 # For MinGW
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     target_compile_definitions(InternalBoot PRIVATE UNICODE _UNICODE)
-    target_compile_options(InternalBoot PRIVATE -municode -pthread)
-    target_link_options(InternalBoot PRIVATE -municode -pthread -static-libgcc -static-libstdc++)
+    target_compile_options(InternalBoot PRIVATE -pthread)
+    target_link_options(InternalBoot PRIVATE -pthread)
 endif()

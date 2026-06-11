@@ -85,7 +85,11 @@ bool ExtractISO(const std::wstring& mountPoint, const std::wstring& dest, LogCal
     }
 
     std::wostringstream cmd;
-    cmd << L"robocopy \"" << mountPoint << L"\" \"" << dest << L"\" /E /NFL /NDL /NJH /NJS /nc /ns /np";
+    std::wstring src = mountPoint;
+    if (!src.empty() && (src.back() == L'\\' || src.back() == L'/')) {
+        src.pop_back();
+    }
+    cmd << L"robocopy \"" << src << L"\" \"" << dest << L"\" /E /NFL /NDL /NJH /NJS /nc /ns /np";
 
     std::string out;
     int exitCode = 0;
