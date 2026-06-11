@@ -398,7 +398,7 @@ void Wizard::OnDrawItem(const DRAWITEMSTRUCT* dis) {
         bg = isPressed ? RGB(40, 160, 220) : isHover ? RGB(70, 200, 255) : Theme::PRIMARY;
         text = Theme::BG;
     } else if (dis->CtlID == IDC_REBOOT_BTN) {
-        bg = isPressed ? RGB(30, 170, 70) : isHover ? RGB(50, 210, 100) : Theme::SUCCESS;
+        bg = isPressed ? RGB(30, 170, 70) : isHover ? RGB(50, 210, 100) : Theme::CLR_SUCCESS;
         text = RGB(255, 255, 255);
     } else if (dis->CtlID == IDC_CLEANUP_BTN || dis->CtlID == IDC_BROWSE_BTN) {
         bg = isPressed ? Theme::BTN_SECONDARY_HOVER : isHover ? Theme::BTN_SECONDARY_HOVER : Theme::BTN_SECONDARY;
@@ -441,8 +441,8 @@ void Wizard::OnDrawItem(const DRAWITEMSTRUCT* dis) {
         oldFont = (HFONT)SelectObject(dis->hDC, Theme::FontDefault());
     wchar_t btnText[256] = {};
     GetWindowTextW(dis->hwndItem, btnText, 256);
-    const wchar_t* text = dis->CtlID == IDC_SET_DEFAULT ? (setDefault_ ? L"[x] Set as default boot entry" : L"[ ] Set as default boot entry") : btnText;
-    DrawTextW(dis->hDC, text, -1, &tr, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+    const wchar_t* btnLabel = dis->CtlID == IDC_SET_DEFAULT ? (setDefault_ ? L"[x] Set as default boot entry" : L"[ ] Set as default boot entry") : btnText;
+    DrawTextW(dis->hDC, btnLabel, -1, &tr, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
     SelectObject(dis->hDC, oldFont);
 }
 

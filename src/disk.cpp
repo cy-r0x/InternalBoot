@@ -17,12 +17,12 @@ std::vector<Partition> GetPartitions(LogCallback log) {
 
     // PowerShell JSON may be a single object or an array.
     // For simplicity, parse the key fields with regex since we control the output shape.
-    std::regex objRegex(R"(\{([^}]*)\})");
-    std::regex driveRegex(R"("DriveLetter"\s*:\s*"?([^",}]+)"?)");
-    std::regex labelRegex(R"("FileSystemLabel"\s*:\s*"([^"]*)")");
-    std::regex fsRegex(R"("FileSystem"\s*:\s*"([^"]*)")");
-    std::regex sizeRegex(R"("Size"\s*:\s*(\d+))");
-    std::regex freeRegex(R"("SizeRemaining"\s*:\s*(\d+))");
+    std::regex objRegex(R"re(\{([^}]*)\})re");
+    std::regex driveRegex(R"re("DriveLetter"\s*:\s*"?([^",}]+)"?)re");
+    std::regex labelRegex(R"re("FileSystemLabel"\s*:\s*"([^"]*)")re");
+    std::regex fsRegex(R"re("FileSystem"\s*:\s*"([^"]*)")re");
+    std::regex sizeRegex(R"re("Size"\s*:\s*(\d+))re");
+    std::regex freeRegex(R"re("SizeRemaining"\s*:\s*(\d+))re");
 
     std::string::const_iterator searchStart(out.cbegin());
     std::smatch m;

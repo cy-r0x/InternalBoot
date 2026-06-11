@@ -16,11 +16,7 @@ std::wstring BackupBCD(LogCallback log) {
     auto now = std::chrono::system_clock::now();
     auto t = std::chrono::system_clock::to_time_t(now);
     std::tm tm;
-#ifdef _MSC_VER
     localtime_s(&tm, &t);
-#else
-    localtime_r(&t, &tm);
-#endif
     wchar_t buf[64] = {};
     wcsftime(buf, 64, L"%Y%m%d_%H%M%S", &tm);
     std::wostringstream ts;
