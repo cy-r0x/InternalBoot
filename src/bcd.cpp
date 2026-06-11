@@ -21,8 +21,10 @@ std::wstring BackupBCD(LogCallback log) {
 #else
     localtime_r(&t, &tm);
 #endif
+    wchar_t buf[64] = {};
+    wcsftime(buf, 64, L"%Y%m%d_%H%M%S", &tm);
     std::wostringstream ts;
-    ts << std::put_time(&tm, L"%Y%m%d_%H%M%S");
+    ts << buf;
     std::wstring backupPath = PathJoin(backupDir, L"BCD_backup_" + ts.str());
 
     std::wostringstream cmd;

@@ -6,10 +6,19 @@
 #include "boot.h"
 #include "utils.h"
 #include <commdlg.h>
+#include <uxtheme.h>
 #include <thread>
 #include <sstream>
 
 #pragma comment(lib, "comdlg32.lib")
+#pragma comment(lib, "uxtheme.lib")
+
+#ifndef PBM_SETBARCOLOR
+#define PBM_SETBARCOLOR (WM_USER+9)
+#endif
+#ifndef PBM_SETBKCOLOR
+#define PBM_SETBKCOLOR  0x2001
+#endif
 
 static constexpr int MARGIN_X = 12;
 static constexpr int MARGIN_Y = 12;
